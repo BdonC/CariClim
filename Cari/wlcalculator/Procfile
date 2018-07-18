@@ -1,0 +1,1 @@
+web: gunicorn run:app --workers 6 --worker-class gevent --preload -b 0.0.0.0:$PORT

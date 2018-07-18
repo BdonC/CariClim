@@ -1,0 +1,3 @@
+#!/bin/bash
+
+wget -rxc -nH --directory-prefix=/iplex/01/tumble/mengel/ipcc_ar4_pcmdi/pcmdi_data/ --cut-dirs=1  ftp://matthiasmengel:az2744za@ftp-esg.ucllnl.org/ipcc/sresa2/atm/mo/tas/ingv_echam4/

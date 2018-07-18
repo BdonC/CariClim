@@ -1,0 +1,1 @@
+gunicorn run:app --workers 3 --worker-class gevent --log-level=debug --bind=unix:./sockfile

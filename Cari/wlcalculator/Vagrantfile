@@ -1,0 +1,16 @@
+Vagrant.configure("2") do |config|
+  config.vm.box = "dummy"
+
+  config.vm.provider :aws do |aws, override|
+    aws.access_key_id = ENV['AWS_ACCESS_KEY']
+    aws.secret_access_key = ENV['AWS_SECRET_KEY']
+    aws.keypair_name = "thpx301"
+    aws.region = "eu-west-1"
+    #aws.ami = "ami-7747d01e"
+    aws.ami = "ami-55e91b22"
+    aws.security_groups = [ 'vagrant-ssh' ]
+    aws.instance_type = "t1.micro"
+    override.ssh.username = "ubuntu"
+    override.ssh.private_key_path = "/home/mengel/.ssh/thpx301.pem"
+  end
+end

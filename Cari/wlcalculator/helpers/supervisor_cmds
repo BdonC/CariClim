@@ -1,0 +1,5 @@
+sudo supervisorctl status
+sudo supervisorctl reread
+sudo supervisorctl update
+sudo supervisorctl start
+sudo supervisorctl stop

@@ -1,0 +1,137 @@
+{% extends "index.html" %}
+{% block content %}
+
+
+<div class="row">
+
+  <!-- left side -->
+  <div class="span6">
+
+    <h4>Warming attribution or time period:</h4>
+
+    <form action="/attrchoice" method="post">
+    {% for choice in attrchoice %}
+        {% if choice in attr_chosen %}
+            <button type="submit" class="btn active" name="attrchoice" value="{{ choice }}">{{ choice }}</button>
+        {% else %}
+            <button type="submit" class="btn" name="attrchoice" value="{{ choice }}">{{ choice }}</button>
+        {% endif %}
+    {% endfor %}
+    </form>
+
+    {% if attr_chosen == attrchoice[0] %}
+    <div class="row">
+      <div class="span3">
+        <form method="POST" action="/periodchoice">
+            {{ form_period.hidden_tag() }}
+            {{ form_period.preindperiod.label }} {{ form_period.preindperiod(size=20) }}
+            {{ form_period.baseperiod.label }} {{ form_period.baseperiod(size=20) }}
+      </div>
+        <div class="span3">
+          {{ form_period.finalperiod.label }} {{ form_period.finalperiod(size=20) }}
+          <button type="submit" class="btn">Select periods</button>
+        </form>
+      </div>
+    </div>
+    {% else %}
+    <div class="row">
+      <div class="span3">
+        <form method="POST" action="/warminglevelchoice">
+            {{ form_wlevel.hidden_tag() }}
+            {{ form_wlevel.preindperiod.label }} {{ form_wlevel.preindperiod(size=20) }}
+            {{ form_wlevel.baseperiod.label }} {{ form_wlevel.baseperiod(size=20) }}
+            <button type="submit" class="btn">Select period, window and levels</button>
+      </div>
+      <div class="span3">
+
+        {{ form_wlevel.wlevels.label }}   {{ form_wlevel.wlevels(size=20) }}
+        {{ form_wlevel.av_window.label }} {{ form_wlevel.av_window(size=20) }}
+
+      </div>
+
+        </form>
+          <!-- form for running mean window here -->
+<!--
+      </div>
+-->
+    </div>
+    {% endif %}
+
+
+    <div class="row">
+      <div class="span3">
+        <form method="POST" action="/scenariochoice">
+          {{ form_sca.hidden_tag() }}
+          <div>{{ form_sca.scenarios.label }} {{ form_sca.scenarios(rows=6, multiple=True, size=6) }}</div>
+          <button type="submit" class="btn">Select scenarios</button>
+        </form>
+      </div>
+      <div class="span3">
+        <div>{{ form_scs.scenarios.label }} {{ form_scs.scenarios(rows=6, multiple=True, size=6) }}</div>
+      </div>
+    </div>
+
+
+    <div class="row">
+    <div class="span3">
+      {% if attr_chosen == attrchoice[0] %}
+      <form method="POST" action="/attribution_results">
+        {{ form_period.hidden_tag() }}
+        <button type="submit" class="btn btn-primary start">Calculate warming attribution!</button>
+       </form>
+       {% else %}
+       <form method="POST" action="/timeperiod_results">
+        {{ form_period.hidden_tag() }}
+        <button type="submit" class="btn btn-primary start">Calculate time periods for warming levels!</button>
+       </form>
+       {% endif %}
+    </div>
+    </div>
+
+    {% if cmip_chosen == "CMIP3" %}
+    Notes:<br>
+    <strong>* No climate model data available, result based on MAGICC6 emulation.</strong><br>
+    The cccma_cgcm3_1 model is in some publications referred to as cccma_cgcm3_1 (t47).
+
+    {% endif %}
+
+  </div>
+
+<!-- right side -->
+  <div class="span6">
+     <h4>Please choose your model archive:</h4>
+     <h6>Mixed processing of CMIP3 and CMIP5 is currently not possible.</h6>
+
+      <form action="/cmipchoice" method="post">
+      {% for choice in cmipchoice %}
+          {% if choice in cmip_chosen %}
+              <button type="submit" class="btn active" name="cmipchoice" value="{{ choice }}">{{ choice }}</button>
+          {% else %}
+              <button type="submit" class="btn" name="cmipchoice" value="{{ choice }}">{{ choice }}</button>
+          {% endif %}
+      {% endfor %}
+      </form>
+    </div>
+
+  <div class="row">
+    <div class="span3">
+      <form method="POST" action="/modelchoice">
+          {{ form_a.hidden_tag() }}
+          <div>{{ form_a.models.label }} {{ form_a.models(rows=10, multiple=True, size=10) }}</div>
+          <button type="submit" class="btn">Select models</button>
+      </form>
+    </div>
+
+    <div class="span3">
+      <div>{{ form_s.models.label }} {{ form_s.models(rows=10, multiple=True, size=10) }}</div>
+    </div>
+  </div>
+
+
+</div>
+
+
+
+
+
+{% endblock %}

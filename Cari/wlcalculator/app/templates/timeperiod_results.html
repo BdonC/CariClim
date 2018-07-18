@@ -1,0 +1,78 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<div class="row">
+  {% if cmipdata.exceedance_tm.axes["wlevel"]|length < 3 %}
+  <div class="span6">
+  {% elif cmipdata.exceedance_tm.axes["wlevel"]|length < 6 %}
+  <div class="span9">
+  {% else %}
+  <div class="span12">
+  {% endif %}
+
+  <h4>year of exceedance (period of exceedance)</h4>
+
+    <table class="table">
+    <thead>
+      <tr>
+        <th></th>
+        {% for wlevel in cmipdata.exceedance_tm.axes["wlevel"] %}
+        <th>{{ wlevel }} &deg;C</th>
+        {% endfor %}
+      </tr>
+    </thead>
+    <tbody>
+    {% for scen in cmipdata.exceedance_tm.axes["scenario"] %}
+      <tr>
+        <td><strong>{{scen}}</strong></td>
+        {% for wlevel in cmipdata.exceedance_tm.axes["wlevel"] %}
+          {% set wl = cmipdata.exceedance_tm[scen,wlevel] %}
+          {% if np.isnan(wl) %}
+            <td>not exceeded.</td>
+          {% else %}
+            <td>{{"%.0f" % wl}} ({{"%.0f" % (wl-(ww-1)/2)}}-{{"%.0f" % (wl+(ww-1)/2)}})</td>
+          {% endif %}
+        {% endfor %}
+      </tr>
+    {% endfor %}
+    </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="row">
+  <div class="span9">
+    The above projected values are averages over the models:<br>
+    <strong>{{ mstr }}</strong>.<br>
+
+    The above given periods in brackets refer to the running mean window of <strong>{{ww}}</strong> years.
+    The warming is calculated from the preindustrial period <strong>{{pp}}</strong>. We use the observed warming
+    (<a href="http://www.metoffice.gov.uk/hadobs/hadcrut4/data/current/download.html" >hadcrut4</a>)
+    until the base period <strong>{{bp}}</strong> and then add the projected warming from your model choice.
+
+    {% if cmipdata.emulator_used == True %}
+    <br><br>
+    <strong><font color=#B40404>
+      * No climate model data available, result based on MAGICC6 emulation.
+      We highly discourage to use the emulation-based results in your research.
+    </font></strong>
+    {% endif %}
+
+
+    <br><br>
+    <small>
+    {% if cmip == "CMIP5" %}
+    We acknowledge the World Climate Research Programme's Working Group on Coupled Modelling, which is responsible for CMIP, and we thank the climate modeling groups (listed <a href="http://cmip-pcmdi.llnl.gov/cmip5/docs/CMIP5_modeling_groups.pdf" >here</a>) for producing and making available their model output. For CMIP the U.S. Department of Energy's Program for Climate Model Diagnosis and Intercomparison provides coordinating support and led development of software infrastructure in partnership with the Global Organization for Earth System Science Portals.<br>
+    Reference: Taylor, K.E., R.J. Stouffer, G.A. Meehl: An Overview of CMIP5 and the experiment design. Bull. Amer. Meteor. Soc., 93, 485-498, 2012.
+    {% else %}
+    We acknowledge the modeling groups, the Program for Climate Model Diagnosis and Intercomparison (PCMDI) and the WCRP's Working Group on Coupled Modelling (WGCM) for their roles in making available the WCRP CMIP3 multi-model dataset. Support of this dataset is provided by the Office of Science, U.S. Department of Energy. Details of models are found <a href="http://www-pcmdi.llnl.gov/ipcc/model_documentation/ipcc_model_documentation.php" >here</a>.<br>
+    Reference: Meehl, G. A., C. Covey, T. Delworth, M. Latif, B. McAvaney, J. F. B. Mitchell, R. J. Stouffer, and K. E. Taylor, 2007: The WCRP CMIP3 multi-model dataset: A new era in climate change research,Bulletin of the American Meteorological Society, <bold>88</bold>, 1383-1394.
+    {% endif %}
+    </small>
+
+
+  </div>
+</div>
+
+
+{% endblock %}
