@@ -9,6 +9,8 @@ import pandas as pd
 a_path = '/media/sf_CA_Shared/country_analysis/'
 
 #testing changes
+#verifying
+
 
 #sys.path.append('/Users/peterpfleiderer/Documents/Projects/country_analysis/')
 sys.path.append(a_path)
