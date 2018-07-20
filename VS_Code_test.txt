@@ -1,1 +1,3 @@
 This is a TEst file for vs code
+
+VS code integration successful.
