@@ -71,7 +71,9 @@ class country_analysis(object):
         self._DATA=[]
         self._region_names={}
 
-        if os.path.isdir(self._working_directory)==False:os.system('mkdir '+self._working_directory)
+        if os.path.isdir(self._working_directory)==False:
+                os.system('mkdir '+self._working_directory)
+                print 'Made : '+self._working_directory
         if os.path.isdir(self._working_directory+'/masks')==False:os.system('mkdir '+self._working_directory+'/masks')
         if os.path.isdir(self._working_directory+'/plots')==False:os.system('mkdir '+self._working_directory+'/plots')
         if os.path.isdir(self._working_directory_raw)==False:os.system('mkdir '+self._working_directory_raw)

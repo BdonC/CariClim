@@ -30,8 +30,11 @@ import forms
 import matplotlib.pylab as plt
 from plotting import *
 
-local = '/home/bdonc/CA/' 
-basepath= local
+local = '/home/bdonc/CA/'
+
+local2 = '/media/sf_CA_Git/repository/Cari'
+
+basepath= local2
 try:
   os.chdir(basepath)
   wlcalculator_path=basepath+'wlcalculator/app/'
