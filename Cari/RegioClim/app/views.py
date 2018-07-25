@@ -32,17 +32,18 @@ from plotting import *
 
 local = '/home/bdonc/CA/'
 
-local2 = '/media/sf_CA_Git/repository/Cari'
+#local path for alrick PC
+local2 = '/media/sf_CA_Git/repository/Cari/'
 
 basepath= local2
 try:
   os.chdir(basepath)
-  wlcalculator_path=basepath+'wlcalculator/app/'
+  wlcalculator_path=basepath+'/wlcalculator/app/'
 except:
   basepath= local
-  wlcalculator_path=basepath+'wlcalculator/app/'
+  wlcalculator_path=basepath+'/wlcalculator/app/'
 
-sys.path.append(basepath+'country_analysis/country_analysis_scripts/')
+sys.path.append(basepath+'/country_analysis/country_analysis_scripts/')
 import country_analysis; reload(country_analysis)
 sys.path.append(basepath+'/RegioClim/')
 os.chdir(basepath+'/RegioClim/')

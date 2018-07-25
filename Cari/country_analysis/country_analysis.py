@@ -400,6 +400,7 @@ class country_analysis(object):
                         self._warming_slices[data.model][data.scenario]={ref_period_name:ref_period}
 
                         # model names from cordex are not explicit!
+                        print model_real_names.keys()
                         if model_real_names is not None:		model_name=model_real_names[data.model]
                         if model_real_names is None:		model_name=data.model.lower()
 
