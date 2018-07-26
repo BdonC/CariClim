@@ -40,13 +40,16 @@ local ='/home/bdonc/CA/'
 
 local2 = '/media/sf_CA_Git/repository/Cari/'
 
-basepath= local2
+#Change this to the appropriate 'local' to match your PC
+base_path = local2
+
+basepath= base_path
 try:
   os.chdir(basepath)
 except:
   basepath='/home/RCM_projection/'
 
-basepath= local2
+basepath= base_path
 
 sys.path.append(basepath+'country_analysis')
 import country_analysis; reload(country_analysis)
