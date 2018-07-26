@@ -6,10 +6,14 @@ from netCDF4 import Dataset,num2date
 import netcdftime
 import pandas as pd
 
-#local path for alrick PC
-local2 = '/media/sf_CA_Git/repository/Cari/'
+#Change to auto fill base path based on 'USER' name
+if(os.environ['USER'] == 'alrick'):
+    local2 = '/media/sf_CA_Git/repository/Cari/'
 
-#Change this to the appropriate 'local' to match your PC
+if(os.environ['USER'] == 'bdonc'):
+    local2 = '/home/bdonc/CA/'
+    
+#Change username and path above to match your PC
 base_path = local2
 
 sys.path.append(base_path+'country_analysis/')

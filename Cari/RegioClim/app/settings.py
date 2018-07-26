@@ -36,11 +36,14 @@ matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 from matplotlib import rc
 rc('text', usetex=True)
-local ='/home/bdonc/CA/'
 
-local2 = '/media/sf_CA_Git/repository/Cari/'
+if(os.environ['USER'] == 'alrick'):
+    local2 = '/media/sf_CA_Git/repository/Cari/'
 
-#Change this to the appropriate 'local' to match your PC
+if(os.environ['USER'] == 'bdonc'):
+    local2 = '/home/bdonc/CA/'
+
+#Change username and path above to match your PC
 base_path = local2
 
 basepath= base_path

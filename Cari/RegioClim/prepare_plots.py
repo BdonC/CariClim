@@ -8,12 +8,13 @@ import matplotlib.pylab as plt
 from matplotlib import rc
 rc('text', usetex=True)
 
-local = '/home/bdonc/CA/'
+if(os.environ['USER'] == 'alrick'):
+    local2 = '/media/sf_CA_Git/repository/Cari/'
 
-#local path for alrick PC
-local2 = '/media/sf_CA_Git/repository/Cari/'
+if(os.environ['USER'] == 'bdonc'):
+    local2 = '/home/bdonc/CA/'
 
-#Change this to the appropriate 'local' to match your PC
+#Change username and path above to match your PC
 base_path = local2
 
 sys.path.append(base_path+'/country_analysis/')
