@@ -35,12 +35,15 @@ local = '/home/bdonc/CA/'
 #local path for alrick PC
 local2 = '/media/sf_CA_Git/repository/Cari/'
 
-basepath= local2
+#Change this to the appropriate 'local' to match your PC
+base_path = local2
+
+basepath= base_path
 try:
   os.chdir(basepath)
   wlcalculator_path=basepath+'/wlcalculator/app/'
 except:
-  basepath= local
+  basepath= base_path
   wlcalculator_path=basepath+'/wlcalculator/app/'
 
 sys.path.append(basepath+'/country_analysis/country_analysis_scripts/')
