@@ -30,7 +30,7 @@ import forms
 import matplotlib.pylab as plt
 from plotting import *
 
-local = '/home/bdonc/CA/' 
+local = '/home/bdonc/CariClim/Cari/' 
 basepath= local
 try:
   os.chdir(basepath)
