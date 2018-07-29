@@ -71,7 +71,9 @@ class country_analysis(object):
         self._DATA=[]
         self._region_names={}
 
-        if os.path.isdir(self._working_directory)==False:os.system('mkdir '+self._working_directory)
+        if os.path.isdir(self._working_directory)==False:
+                os.system('mkdir '+self._working_directory)
+                print 'Made : '+self._working_directory
         if os.path.isdir(self._working_directory+'/masks')==False:os.system('mkdir '+self._working_directory+'/masks')
         if os.path.isdir(self._working_directory+'/plots')==False:os.system('mkdir '+self._working_directory+'/plots')
         if os.path.isdir(self._working_directory_raw)==False:os.system('mkdir '+self._working_directory_raw)
@@ -398,6 +400,7 @@ class country_analysis(object):
                         self._warming_slices[data.model][data.scenario]={ref_period_name:ref_period}
 
                         # model names from cordex are not explicit!
+                        print model_real_names.keys()
                         if model_real_names is not None:		model_name=model_real_names[data.model]
                         if model_real_names is None:		model_name=data.model.lower()
 

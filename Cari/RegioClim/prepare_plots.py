@@ -8,13 +8,18 @@ import matplotlib.pylab as plt
 from matplotlib import rc
 rc('text', usetex=True)
 
-sys.path.append('/media/sf_CA_Shared/country_analysis/')
+local = '/home/bdonc/CA/'
+
+#local path for alrick PC
+local2 = '/media/sf_CA_Git/repository/Cari/'
+
+sys.path.append(local2+'/country_analysis/')
 try:del sys.modules['country_analysis'] 
 except:pass
 from country_analysis import country_analysis
-sys.path.append('/media/sf_CA_Shared/')
+sys.path.append(local2)
 
-os.chdir('/media/sf_CA_Shared/')
+os.chdir(local2)
 
 
 # indicator_dict={
@@ -38,7 +43,7 @@ ref_period_name='1986-2006'
 
 COU={}
 COU['JAM']=country_analysis('JAM','country_analysis/data/JAM/',seasons={'year':range(1,13),'Jun-Sep':[6,7,8,9],})
-COU['BEN']=country_analysis('BEN','country_analysis/data/BEN/',seasons={'year':range(1,13),'Apr-Jul':[4,5,6,7]})
+#COU['BEN']=country_analysis('BEN','country_analysis/data/BEN/',seasons={'year':range(1,13),'Apr-Jul':[4,5,6,7]})
 
 for country in COU.keys():
   COU[country].load_data()
@@ -48,15 +53,15 @@ for country in COU.keys():
   #COU[country].annual_cycle(periods={'ref':[1986,2006]},selection=COU[country].selection(['EWEMBI']))
   COU[country].period_statistics(periods=periods,selection=COU[country].selection(['CORDEX_BC']))
   #COU[country].annual_cycle(periods=periods,selection=COU[country].selection(['CORDEX_BC']))
-  COU[country].get_warming_slices(wlcalculator_path='/media/sf_CA_Shared/wlcalculator/app/',model_real_names={'IPSL':'ipsl-cm5a-lr','HADGEM2':'hadgem2-es','ECEARTH':'hadgem2-es','MPIESM':'mpi-esm-lr'})
-  COU[country].period_statistics(periods=COU[country]._warming_slices,selection=COU[country].selection(['CORDEX_BC']))
+  #COU[country].get_warming_slices(wlcalculator_path=local2+'/wlcalculator/app/',model_real_names={'IPSL':'ipsl-cm5a-lr','HADGEM2':'hadgem2-es','ECEARTH':'hadgem2-es','MPIESM':'mpi-esm-lr'})
+  #COU[country].period_statistics(periods=COU[country]._warming_slices,selection=COU[country].selection(['CORDEX_BC']))
   #COU[country].annual_cycle(periods=COU[country]._warming_slices,selection=COU[country].selection(['CORDEX_BC']))
 
   COU[country].period_model_agreement()
-  COU[country].annual_cycle_ensemble_mean()
+  #COU[country].annual_cycle_ensemble_mean()
 
 
-os.chdir('/media/sf_CA_Shared/RegioClim/app/')
+os.chdir(local2+'/RegioClim/app/')
 
 overwrite=True
 
@@ -174,10 +179,10 @@ for country in COU.keys():
             #message=ewembi.plot_transients(season=season,region=region,running_mean_years=20,ax=ax,title='',ylabel=None,label='observation',color='green')
 
             #if message==1:
-            #  ax.set_ylabel(indicator_dict[indicator]['ylabel'])
-            #  ax.set_title('transient plot')
-            #  plt.legend(loc='best')
-            #plt.savefig(transient_plot)
+            # ax.set_ylabel(indicator_dict[indicator]['ylabel'])
+            # ax.set_title('transient plot')
+            # plt.legend(loc='best')
+            # plt.savefig(transient_plot)
 
 
 # # annual cycle

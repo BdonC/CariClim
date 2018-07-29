@@ -37,11 +37,16 @@ import matplotlib.pyplot as plt
 from matplotlib import rc
 rc('text', usetex=True)
 local ='/home/bdonc/CA/'
-basepath= local
+
+local2 = '/media/sf_CA_Git/repository/Cari/'
+
+basepath= local2
 try:
   os.chdir(basepath)
 except:
   basepath='/home/RCM_projection/'
+
+basepath= local2
 
 sys.path.append(basepath+'country_analysis')
 import country_analysis; reload(country_analysis)

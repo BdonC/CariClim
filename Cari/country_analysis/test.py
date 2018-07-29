@@ -6,7 +6,15 @@ import numpy as np
 from netCDF4 import Dataset,num2date
 import pandas as pd
 
-a_path = '/media/sf_CA_Shared/country_analysis/'
+#local path for alrick PC
+local2 = '/media/sf_CA_Git/repository/Cari/'
+
+
+a_path = local2+'country_analysis/'
+
+#testing changes
+#Final test
+
 
 #sys.path.append('/Users/peterpfleiderer/Documents/Projects/country_analysis/')
 sys.path.append(a_path)
