@@ -87,14 +87,21 @@ from netCDF4 import Dataset,num2date
 import netcdftime
 import pandas as pd
 
-#local path for alrick PC
-local2 = '/media/sf_CA_Git/repository/Cari/'
+#Change to auto fill base path based on 'USER' name
+if(os.environ['USER'] == 'alrick'):
+    local2 = '/media/sf_CA_Git/repository/Cari/'
 
-sys.path.append(local2+'country_analysis/')
+if(os.environ['USER'] == 'bdonc'):
+    local2 = '/home/bdonc/CA/'
+    
+#Change username and path above to match your PC
+base_path = local2
+
+sys.path.append(base_path+'country_analysis/')
 try:del sys.modules['country_analysis']
 except:pass
 import country_analysis; reload(country_analysis)
-sys.path.append(local2+'country_analysis/')
+sys.path.append(base_path+'country_analysis/')
 
 
 import argparse
@@ -112,7 +119,7 @@ iso='JAM'#args.country
 
 
 print iso
-os.chdir(local2+'country_analysis/')
+os.chdir(base_path+'country_analysis/')
 # data will be stored in working_directory
 COU=country_analysis.country_analysis(iso,working_directory='data/'+iso+'/',additional_tag='')
 
@@ -121,7 +128,14 @@ COU=country_analysis.country_analysis(iso,working_directory='data/'+iso+'/',addi
 # ##############
 
 #path to CRU Data
-CRU_path = '/media/sf_CA_Shared/CRU/'
+# Brandon CRU Path
+CRU = ''
+
+#Alrick CRU path
+CRU2 = '/media/sf_CA_Shared/CRU/'
+
+#Change this to the appropriate 'CRU' to match your PC
+CRU_path = CRU2
 
 # country mask
 COU.create_mask_country(CRU_path+'cru_ts3.24.01.1901.2015.tmp.dat.nc','tmp',overwrite=False)

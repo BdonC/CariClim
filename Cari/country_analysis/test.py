@@ -6,27 +6,33 @@ import numpy as np
 from netCDF4 import Dataset,num2date
 import pandas as pd
 
-#local path for alrick PC
-local2 = '/media/sf_CA_Git/repository/Cari/'
+#Change to auto fill base path based on 'USER' name
+if(os.environ['USER'] == 'alrick'):
+    local2 = '/media/sf_CA_Git/repository/Cari/'
+
+if(os.environ['USER'] == 'bdonc'):
+    local2 = '/home/bdonc/CA/'
 
 
-a_path = local2+'country_analysis/'
+#Change username and path above to match your PC
+base_path = local2+'country_analysis/'
 
+print base_path
 #testing changes
 #Final test
 
 
 #sys.path.append('/Users/peterpfleiderer/Documents/Projects/country_analysis/')
-sys.path.append(a_path)
+sys.path.append(base_path)
 try:del sys.modules['country_analysis']
 except:pass
 import country_analysis; reload(country_analysis)
 #sys.path.append('/Users/peterpfleiderer/Documents/Projects/country_analysis/')
-sys.path.append(a_path)
+sys.path.append(base_path)
 
 
 iso='JAM'
-os.chdir(a_path)
+os.chdir(base_path)
 os.system('cdo -V &pause')
 # data will be stored in working_directory
 COU=country_analysis.country_analysis(iso,working_directory='data/'+iso+'/',additional_tag='')

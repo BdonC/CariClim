@@ -8,18 +8,22 @@ import matplotlib.pylab as plt
 from matplotlib import rc
 rc('text', usetex=True)
 
-local = '/home/bdonc/CA/'
+if(os.environ['USER'] == 'alrick'):
+    local2 = '/media/sf_CA_Git/repository/Cari/'
 
-#local path for alrick PC
-local2 = '/media/sf_CA_Git/repository/Cari/'
+if(os.environ['USER'] == 'bdonc'):
+    local2 = '/home/bdonc/CA/'
 
-sys.path.append(local2+'/country_analysis/')
+#Change username and path above to match your PC
+base_path = local2
+
+sys.path.append(base_path+'/country_analysis/')
 try:del sys.modules['country_analysis'] 
 except:pass
 from country_analysis import country_analysis
-sys.path.append(local2)
+sys.path.append(base_path)
 
-os.chdir(local2)
+os.chdir(base_path)
 
 
 # indicator_dict={
@@ -53,7 +57,7 @@ for country in COU.keys():
   #COU[country].annual_cycle(periods={'ref':[1986,2006]},selection=COU[country].selection(['EWEMBI']))
   COU[country].period_statistics(periods=periods,selection=COU[country].selection(['CORDEX_BC']))
   #COU[country].annual_cycle(periods=periods,selection=COU[country].selection(['CORDEX_BC']))
-  #COU[country].get_warming_slices(wlcalculator_path=local2+'/wlcalculator/app/',model_real_names={'IPSL':'ipsl-cm5a-lr','HADGEM2':'hadgem2-es','ECEARTH':'hadgem2-es','MPIESM':'mpi-esm-lr'})
+  #COU[country].get_warming_slices(wlcalculator_path=base_path+'/wlcalculator/app/',model_real_names={'IPSL':'ipsl-cm5a-lr','HADGEM2':'hadgem2-es','ECEARTH':'hadgem2-es','MPIESM':'mpi-esm-lr'})
   #COU[country].period_statistics(periods=COU[country]._warming_slices,selection=COU[country].selection(['CORDEX_BC']))
   #COU[country].annual_cycle(periods=COU[country]._warming_slices,selection=COU[country].selection(['CORDEX_BC']))
 
@@ -61,7 +65,7 @@ for country in COU.keys():
   #COU[country].annual_cycle_ensemble_mean()
 
 
-os.chdir(local2+'/RegioClim/app/')
+os.chdir(base_path+'/RegioClim/app/')
 
 overwrite=True
 
