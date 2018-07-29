@@ -31,7 +31,7 @@ import country_analysis; reload(country_analysis)
 sys.path.append(base_path)
 
 
-iso='JAM'
+iso='ATG'
 os.chdir(base_path)
 os.system('cdo -V &pause')
 # data will be stored in working_directory
